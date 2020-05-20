@@ -2,13 +2,10 @@
 A very light note taking and searching app written in VBScript for Windows.
 Simple yet powerfull script with just around 10KB in size.
 
-# Summary
+## Summary
 * lightnotes app stores entire notes in a plain text file (lightnotes.txt)
 * Notes can be added and edited with Notepad++ or Notepad
-* Text searching returns the matched text and a unique number as an address of the note 
-
-###### 
-A plain file with name *lightnotes.txt* is used as backend store 
+* Text searching returns the matched text and a unique number as an address of the note  
 
 ## Prerequisites
 Notepad++ or even Notepad
@@ -16,9 +13,7 @@ Notepad++ or even Notepad
 ## Assumptions
 Notepad++
 
-
 ## Installation
-
 1. Create a folder in your system **lightnotes**
 1. Copy the lightnotes.vbs file
 1. Create a desktop shortcut 

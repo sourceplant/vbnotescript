@@ -41,12 +41,12 @@ Notepad++ or even Notepad
    * A blank temp file opens up in Notepad++
    * Save it once with Ctrl +s , only when you are done with the file, else leave it open
    *Note* - Saving the file, flags it for updation and deletion the temp file.
-   *Note* - There is no connecpt of Note name, however you can take first line of each note as note name eg. ##### Note1
+   *Note* - There is no connecpt of Notes name, however you can take first line of each note as note name by marking with eg. ##### Note1
 * To search for some text, type your search in input box and press ok
    * A notepad file appears with all matched items and a refernce number to the notes having those items
    * To view or edit the note having the matched items, enter the reference number in new inputbox marked with Enter Selection.
    * Same way multiple notes linked to the search can be opened for viewing or editing.
    * Once you are done with that particular search, press cancel button and repeat for next search.
 * To edit a Note
-   * Repeat the procedure to search for the text
+   * Repeat the procedure to search for the note texts or notes name.
    * Save the note only once you are done with it.

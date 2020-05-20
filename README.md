@@ -50,3 +50,5 @@ Notepad++ or even Notepad
 * To edit a Note
    * Repeat the procedure to search for the note texts or notes name.
    * Save the note only once you are done with it.
+* Saving the clipboard content as a new note
+   * To save the clipboard, press okay while input box is having text "Saving the Clipboard"

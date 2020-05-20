@@ -6,12 +6,15 @@ Simple yet powerfull script with just around 10KB in size.
 * vbnotescript app stores entire notes in a plain text main file (vbnotescript.txt)
 * On startup, it loads whole of the file content in memory.
 * On shutdown, it makes a backup of initial main file and dumps the in memory updated content to it
-* Notes can be added and edited with Notepad++ or Notepad
+* Notes can be added and edited with Notepad++ or Notepad, default is notepad++
 * Text searching returns the matched text and a unique number as a refernce to the note
-* Editing a note require one time save
+* Note editing with single save, as on committing save, temporary file is marked for updation in memory and deletion.  
 
 ## Prerequisites
-Notepad++ or even Notepad
+* Notepad++ or even Notepad
+* Notepad++ with File Status auto detection enabled
+   * Settings -> Preferences -> MISC. tab -> File Status Auto Detection -> Enabled
+
 * Note: Default is notepad++, to use notepad, replace it in the vbs file 
 
 

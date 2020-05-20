@@ -27,14 +27,14 @@ set objFSO = CreateObject("Scripting.FileSystemObject")
 'objFile.Close
 
 ' Checking if File Exists
-If objFSO.FileExists("commands_detail.txt") = False Then
-    set objFile1 = objFSO.OpenTextFile("commands_detail.txt", 2, True)
+If objFSO.FileExists("lightnotes.txt") = False Then
+    set objFile1 = objFSO.OpenTextFile("lightnotes.txt", 2, True)
 	objFile1.Write delimiter & vbLf & delimiter & vbLf
 	objFile1.Close
 End If
 
 ' Reading the knowledge base file
-set objFile1 = objFSO.OpenTextFile("commands_detail.txt", 1)
+set objFile1 = objFSO.OpenTextFile("lightnotes.txt", 1)
 detailArr = Split(objFile1.ReadAll, vbLf)
 objFile1.Close
 
@@ -283,13 +283,13 @@ Next
 ' Checking if any change in array since startup.
 if initialsize<>UBound(detailArr) Then
 ' Making backup before opening
-Set f = objFSO.GetFile("commands_detail.txt")
- tp = "commands_detail.txt" & f.DateLastModified
+Set f = objFSO.GetFile("lightnotes.txt")
+ tp = "lightnotes.txt" & f.DateLastModified
 old=replace(replace(replace(tp,"/","_"),":","_")," ","_")
-objFso.CopyFile "commands_detail.txt", old 
+objFso.CopyFile "lightnotes.txt", old 
 
 ' Writing up the loaded and populated detailArr content to file, ignoring garbage marked lines which were basically edited files.
-set objFile = objFSO.OpenTextFile("commands_detail.txt", 2, true)
+set objFile = objFSO.OpenTextFile("lightnotes.txt", 2, true)
 For i = 0 To UBound(detailArr)
 	If detailArr(i) <> "+++++GARBAGE+++++" Then
 		objFile.Write detailArr(i)

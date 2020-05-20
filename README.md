@@ -29,4 +29,4 @@ Notepad++
    1. A input text box is displayed
    1. Ready for the use
   
-![Image description](https://github.com/sourceplant/vbnotescript/blob/master/installation.jpg)
+![Image description](https://github.com/sourceplant/vbnotescript/blob/master/INSTALLATION.jpg)

@@ -12,9 +12,9 @@ Simple yet powerfull script with just around 10KB in size.
 
 ## Prerequisites
 Notepad++ or even Notepad
+* Note: Default is notepad++, to use notepad, replace it in the vbs file 
 
-## Assumptions
-Notepad++
+
 
 ## Getting Started
 1. Create a folder in your system **vbnotescript**

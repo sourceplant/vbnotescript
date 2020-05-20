@@ -18,7 +18,7 @@ Notepad++ or even Notepad
 
 ## Getting Started
 1. Create a folder in your system **vbnotescript**
-1. Copy the vbnotescript.vbs file.[vbnotescript.vbs](https://github.com/sourceplant/vbnotescript/blob/master/vbnotescript.vbs)
+1. Copy the vbnotescript.vbs file. [vbnotescript.vbs](https://github.com/sourceplant/vbnotescript/blob/master/vbnotescript.vbs)
 1. Create a desktop shortcut 
    1. Right click anywhere inside the folder - New - Shortcut
    1. Browse to vbnotescript.vbs script location

@@ -2,10 +2,13 @@
 A very light note taking and searching app written in VBScript for Windows.
 Simple yet powerfull script with just around 10KB in size.
 
-## Summary
-* vbnotescript app stores entire notes in a plain text file (vbnotescript.txt)
+## Concepts
+* vbnotescript app stores entire notes in a plain text main file (vbnotescript.txt)
+* On startup, it loads whole of the content in memory.
+* On shutdown, it makes a backup of initial main file and dumps the memory having updated data to it
 * Notes can be added and edited with Notepad++ or Notepad
-* Text searching returns the matched text and a unique number as an address of the note  
+* Text searching returns the matched text and a unique number as an address of the note
+* Editing a note require one time save
 
 ## Prerequisites
 Notepad++ or even Notepad
@@ -13,7 +16,7 @@ Notepad++ or even Notepad
 ## Assumptions
 Notepad++
 
-## Installation
+## Getting Started
 1. Create a folder in your system **vbnotescript**
 1. Copy the vbnotescript.vbs file
 1. Create a desktop shortcut 
@@ -30,3 +33,20 @@ Notepad++
    1. Ready for the use
   
 ![Image description](https://github.com/sourceplant/vbnotescript/blob/master/INSTALLATION.jpg)
+
+## Working with vbnotescript
+
+* Press your keyboard shortcut combination **Ctrl+Alt+F** to start the app
+* To create a new Note, type ":new" in the inputBox.
+   * A blank temp file opens up in Notepad++
+   * Save it once with Ctrl +s , only when you are done with the file, else leave it open
+   *Note* - Saving the file, flags it for updation and deletion the temp file.
+   *Note* - There is no connecpt of Note name, however you can take first line of each note as note name eg. ##### Note1
+* To search for some text, type your search in input box and press ok
+   * A notepad file appears with all matched items and a refernce number to the notes having those items
+   * To view or edit the note having the matched items, enter the reference number in new inputbox marked with Enter Selection.
+   * Same way multiple notes linked to the search can be opened for viewing or editing.
+   * Once you are done with that particular search, press cancel button and repeat for next search.
+* To edit a Note
+   * Repeat the procedure to search for the text
+   * Save the note only once you are done with it.

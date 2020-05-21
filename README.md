@@ -1,6 +1,6 @@
 # vbnotescript
-A very light note taking and searching app written in VBScript for Windows.
-Simple yet powerful < 15KB
+A very small and light note taking and searching app written in VBScript for Windows.
+Simple yet powerful.
 
 ## Concepts
 * vbnotescript app stores entire notes in a plain text main file (vbnotescript.txt)

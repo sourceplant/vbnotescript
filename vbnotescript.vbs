@@ -172,7 +172,7 @@ Sub search()
 	' If no matches found, no need to show further options, exit the subroutine
 	' Display the result
 	If found = true Then
-	 objShell.Run "notepad++ Result.sh"
+	 objShell.Run "notepad Result.sh"
 		' vbCancel aborts the script
 		' Let user view details by opening complete file with matched pattern, this basically uses the index of matched pattern from dictionary "refdict"
 		' and creates a new dictionary "dict" which will have SOF and EOF for each viewed files.

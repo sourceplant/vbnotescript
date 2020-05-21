@@ -68,7 +68,7 @@ function ReadInput()
 							dict.Add nkey, "new"
 							tfile = nkey &"_"& dict(nkey) & ".sh"
 							filedict.Add nkey &"_"& dict(nkey), tfile
-							MsgBox tfile
+							'MsgBox tfile
 							set objFile2 = objFSO.OpenTextFile(tfile, 8, True)
 							objShell.Run "notepad++" & " "& tfile
 							objFile2.Close

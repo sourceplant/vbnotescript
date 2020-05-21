@@ -7,15 +7,14 @@ Simple yet powerfull script with just around 10KB in size.
 * On startup, it loads whole of the file content in memory.
 * On shutdown, it makes a backup of initial main file and dumps the in memory updated content to it
 * Notes can be added and edited with Notepad++ or Notepad, default is notepad++
-* Text searching returns the matched text and a unique number as a refernce to the note
-* Note editing with single save, as on committing save, temporary file is marked for updation in memory and deletion.  
+* Text searching returns the matched text and a unique number as a refernce to the note, default is notepad to display the search result
 
 ## Prerequisites
-* Notepad++ or even Notepad
-* Notepad++ with File Status auto detection enabled
+* Notepad++ and Notepad
+* Notepad++ with File Status auto detection enabled to avoid opening duplicate copy of same file
    * Settings -> Preferences -> MISC. tab -> File Status Auto Detection -> Enabled
 
-* Note: Default is notepad++, to use notepad, replace it in the vbs file 
+* Note: Default is notepad++ for file operators, to use notepad, replace it in the vbs file 
 
 
 
@@ -43,8 +42,8 @@ Simple yet powerfull script with just around 10KB in size.
 * To create a new Note, type ":new" in the inputBox.
    * A blank temp file opens up in Notepad++
    * Save it once with Ctrl +s , only when you are done with the file, else leave it open
-   *Note* - Saving the file, flags it for updation and deletion the temp file.
-   *Note* - There is no connecpt of Notes name, however you can take first line of each note as note name by marking with eg. ##### Note1
+   * Note - There is no connecpt of Notes name, however you can take first line of each note as note name by marking with
+      * eg. ##### Note1
 * To search for some text, type your search in input box and press ok
    * A notepad file appears with all matched items and a reference number to the notes having those items
    * To view or edit the note having the matched items, enter the reference number in new inputbox marked with Enter Selection.

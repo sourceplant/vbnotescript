@@ -12,10 +12,12 @@ Public detailArr
 Public last
 Public oldClipboardText
 Public newfile
-
 delimiter = "--++======#======++--"
-Set dict = CreateObject("Scripting.Dictionary") 
 Set refdict = CreateObject("Scripting.Dictionary")
+'Storing Address of Note start and end line
+Set dict = CreateObject("Scripting.Dictionary") 
+'Soring file name linked to a note
+Set filedict = CreateObject("Scripting.Dictionary") 
 'Set resultdict = CreateObject("Scripting.Dictionary")  
 set objHTML = CreateObject("htmlfile")
 
@@ -27,14 +29,14 @@ set objFSO = CreateObject("Scripting.FileSystemObject")
 'objFile.Close
 
 ' Checking if File Exists
-If objFSO.FileExists("vbnotesript.txt") = False Then
-    set objFile1 = objFSO.OpenTextFile("vbnotesript.txt", 2, True)
+If objFSO.FileExists("vbnotescript.txt") = False Then
+    set objFile1 = objFSO.OpenTextFile("vbnotescript.txt", 2, True)
 	objFile1.Write delimiter & vbLf & delimiter & vbLf
 	objFile1.Close
 End If
 
 ' Reading the knowledge base file
-set objFile1 = objFSO.OpenTextFile("vbnotesript.txt", 1)
+set objFile1 = objFSO.OpenTextFile("vbnotescript.txt", 1)
 detailArr = Split(objFile1.ReadAll, vbLf)
 objFile1.Close
 
@@ -62,9 +64,11 @@ function ReadInput()
 	' This section handles if you want to add some content so creates a file for you, which later will be merged to knowledge base array
 	ElseIf input = ":new" Then
 	        newfile = newfile + 1
-							dict.Add newfile, "new"
-							tfile = newfile &"_"& dict(newfile) & ".sh"
-							'MsgBox tfile
+			                nkey="0"&newfile
+							dict.Add nkey, "new"
+							tfile = nkey &"_"& dict(nkey) & ".sh"
+							filedict.Add nkey &"_"& dict(nkey), tfile
+							MsgBox tfile
 							set objFile2 = objFSO.OpenTextFile(tfile, 8, True)
 							objShell.Run "notepad++" & " "& tfile
 							objFile2.Close
@@ -195,14 +199,19 @@ Sub search()
 						tfile = refdict(selected) &"_"&i+1&".sh"
 						If Not dict.Exists(refdict(selected)) Then 
 							objFile2.Close
+							' Storing start and end line no. of the note in dict
+							' refdict(selected) is address of start of Note and i+1 is the address of End of Note
 							dict.Add refdict(selected), i+1
+							' Storing note and its linked filename eg. "startline_endline" = startline_endline.sh
+							filedict.Add refdict(selected)&"_"&i+1, tfile
 							if Not objFso.FileExists(tfile) Then
-							objFso.MoveFile ".result.sh",tfile
+							   objFso.MoveFile ".result.sh",tfile
 							End If
 							objShell.Run "notepad++" & " "&tfile
 						else
 							objFile2.Close
-							objShell.Run "notepad++" & " "&tfile
+							'objShell.Run "notepad++" & " "&tfile
+							objShell.Run "notepad++" & " "&filedict(refdict(selected)&"_"& dict(refdict(selected)))
 					End If
 					Exit For
 					End If
@@ -229,17 +238,21 @@ Sub update()
     If dict.count <> 0 Then
 		'MsgBox dict.count
 		For Each key In dict.Keys
-		set f = objFSO.GetFile(key&"_"&dict(key)&".sh")
+		'set f = objFSO.GetFile(key&"_"&dict(key)&".sh")
+		set f = objFSO.GetFile(filedict(key&"_"&dict(key)))
 		'MsgBox key&"_"&dict(key)&".sh is last updated in " & DateDiff("s",last,f.DateLastModified) & " seconds "
                 ' Any file updated since last file written by script which is tracked by last variable
 				'MsgBox key
-                if (DateDiff("s",last,f.DateLastModified) > 0) Then
-			if dict(key) <> "new" Then
-			 For i = key To dict(key)
-				detailArr(i) = "+++++GARBAGE+++++"
-			 Next
-			End If
-			set objFile1 = objFSO.OpenTextFile(key&"_"&dict(key)&".sh", 1)
+           if (DateDiff("s",last,f.DateLastModified) > 0) Then
+			       if dict(key) <> "new" Then
+			         For i = key To dict(key)
+				        detailArr(i) = "+++++GARBAGE+++++"
+			         Next
+			       End If
+			set objFile1 = objFSO.OpenTextFile(filedict(key&"_"&dict(key)), 1)
+			'MsgBox key & "---" & dict(key)
+			'Storing the new start line of note in memory to accommodate further saves
+			newAddrStart=Ubound(detailArr) + 1
 			If Not objFile1.AtEndOfStream Then
 			updateArr = Split(objFile1.ReadAll, vbLf)
 			Redim preserve detailArr(Ubound(detailArr) + 1)
@@ -253,10 +266,22 @@ Sub update()
 			Redim preserve detailArr(Ubound(detailArr) + 1)
 			detailArr(Ubound(detailArr)) = delimiter
 			End If
-			objFile1.Close
-			objFSO.DeleteFile(key&"_"&dict(key)&".sh")
+			'Storing the new end line of note in memory to accommodate further saves
+			newAddrEnd=Ubound(detailArr)
+			'Making and start to end line mapping in dictionary
+			If Not dict.Exists(newAddrStart) Then 
+			dict.Add newAddrStart, newAddrEnd
+			End If
+			'Making new note address mapping to old filename, so that user can still keep editing that
+			If Not filedict.Exists(newAddrStart&"_"&newAddrEnd) Then 
+			filedict.Add newAddrStart&"_"&newAddrEnd, filedict(key&"_"&dict(key))
+			' Deleting old note address to file name mapping
+			filedict.Remove(key&"_"&dict(key))
 			dict.Remove(key)
-                End If
+			End If
+			objFile1.Close
+			'objFSO.DeleteFile(key&"_"&dict(key)&".sh")
+          End If
 		Next
 	
 	End If
@@ -275,21 +300,22 @@ Loop until check = False
 ' Calling update to check and update any edited files last time before exiting
 update()
 ' Cleaning up the files which were created but not updated.
-For Each key In dict.Keys
-	objFSO.DeleteFile(key&"_"&dict(key)&".sh")
-	dict.Remove(key)
+For Each key In filedict.Keys
+    'MsgBox key
+	objFSO.DeleteFile(filedict(key))
+	filedict.Remove(key)
 Next
 
 ' Checking if any change in array since startup.
 if initialsize<>UBound(detailArr) Then
 ' Making backup before opening
-Set f = objFSO.GetFile("vbnotesript.txt")
- tp = "vbnotesript.txt" & f.DateLastModified
+Set f = objFSO.GetFile("vbnotescript.txt")
+ tp = "vbnotescript.txt" & f.DateLastModified
 old=replace(replace(replace(tp,"/","_"),":","_")," ","_")
-objFso.CopyFile "vbnotesript.txt", old 
+objFso.CopyFile "vbnotescript.txt", old 
 
 ' Writing up the loaded and populated detailArr content to file, ignoring garbage marked lines which were basically edited files.
-set objFile = objFSO.OpenTextFile("vbnotesript.txt", 2, true)
+set objFile = objFSO.OpenTextFile("vbnotescript.txt", 2, true)
 For i = 0 To UBound(detailArr)
 	If detailArr(i) <> "+++++GARBAGE+++++" Then
 		objFile.Write detailArr(i)

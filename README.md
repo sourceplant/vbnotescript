@@ -41,7 +41,7 @@ Simple yet powerfull script with just around 10KB in size.
 * Press your keyboard shortcut combination **Ctrl+Alt+F** to start the app
 * To create a new Note, type ":new" in the inputBox.
    * A blank temp file opens up in Notepad++
-   * Save it once with Ctrl +s , only when you are done with the file, else leave it open
+   * Save it to update the file content
    * Note - There is no connecpt of Notes name, however you can take first line of each note as note name by marking with
       * eg. ##### Note1
 * To search for some text, type your search in input box and press ok
@@ -53,4 +53,4 @@ Simple yet powerfull script with just around 10KB in size.
    * Repeat the procedure to search for the note texts or notes name.
    * Save the note only once you are done with it.
 * Saving the clipboard content as a new note
-   * To save the clipboard, press okay while input box is having text "Saving the Clipboard"
+   * To save the clipboard as a new note, press okay while input box is having text "Saving the Clipboard"

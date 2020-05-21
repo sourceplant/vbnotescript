@@ -35,7 +35,7 @@ Simple yet powerfull script with just around 10KB in size.
    1. A input text box is displayed
    1. Ready for the use
   
-![Image description](https://github.com/sourceplant/vbnotescript/blob/master/INSTALLATION.jpg)
+![Image description](https://github.com/sourceplant/vbnotescript/blob/master/Images/installation.jpg)
 
 ## Working with vbnotescript
 

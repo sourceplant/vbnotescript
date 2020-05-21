@@ -7,7 +7,7 @@ Simple yet powerful.
 * On startup, it loads whole of the file content in memory.
 * On shutdown, it makes a backup of initial main file and dumps the in memory updated content to it
 * Notes can be added and edited with Notepad++ or Notepad, default is notepad++
-* Text searching returns the matched text and a unique number as a refernce to the note, default is notepad to display the search result
+* Text searching returns the matched text and a unique number as a reference to the note, default is notepad to display the search result
 
 ## Prerequisites
 * Notepad++ and Notepad
